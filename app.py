@@ -2,10 +2,15 @@
 from flask import Flask, jsonify
 from additional_information_queries import get_additional_information
 from backend import db_connection as db
+from flask_cors import CORS
 
+import locale
 
+# Set the locale to UTF-8
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 # Create an instance of the Flask class
 app = Flask(__name__)
+CORS(app)
 
 database = db.client.open_montreal
 collection = database.actes_criminels
