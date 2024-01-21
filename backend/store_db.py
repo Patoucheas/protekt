@@ -12,7 +12,7 @@ db = client.open_montreal
 
 # GeoJSON file paths and their corresponding collection names
 geojson_files = {
-    "C:/Users/korjo/Downloads/pdq.geojson": "pdq"
+    "pdq.geojson": "pdq"
 
     # Add more files and collections as needed
 }
