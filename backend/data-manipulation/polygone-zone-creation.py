@@ -1,15 +1,13 @@
 from backend import db_connection as db
 import test_data_manipulation as data_coordinates
+from shapely.geometry import mapping
 
 
 def create_crime_zone(db_collection, boroughs_polygon):
 
     all_crime_zones = {}
     for place_name, polygon_coordinates in boroughs_polygon.items():
-        polygon_geojson = {
-            "type": "MultiPolygon",
-            "coordinates": [polygon_coordinates]
-        }
+        polygon_geojson = mapping(polygon_coordinates)
 
         # query the locations of crime within polygon
         query = {
@@ -20,11 +18,25 @@ def create_crime_zone(db_collection, boroughs_polygon):
             }
         }
         crimes_in_zone = list(db_collection.find(query))
+        # Add a new field "city" to each crime document and set it to the place_name
+        for crime in crimes_in_zone:
+            crime["city"] = place_name
+
+        # Update the documents in the collection with the new "city" field
+        update_query = {"_id": {"$in": [crime["_id"] for crime in crimes_in_zone]}}
+        update_operation = {
+            "$set": {"city": place_name}
+        }
+        db_collection.update_many(update_query, update_operation)
         # Print or process the result
         if crimes_in_zone:
+            print(place_name + " in crime zone")
             all_crime_zones.update({place_name: crimes_in_zone})
         else:
-            print("No crimes found within the polygon zone.")
+            print(place_name + " No crimes found within the polygon zone.")
+    for city in all_crime_zones:
+        print("Number of crime in ",city, ": ", len(all_crime_zones[city]))
+
     return all_crime_zones
 
 
