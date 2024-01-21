@@ -4,10 +4,6 @@ from additional_information_queries import get_additional_information
 from backend import db_connection as db
 from flask_cors import CORS
 
-import locale
-
-# Set the locale to UTF-8
-locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 # Create an instance of the Flask class
 app = Flask(__name__)
 CORS(app)
@@ -28,6 +24,7 @@ def send_addtionial_info():
     if info_dict is not None:
         info_dict_processed = remove_none_values(info_dict)
         response = jsonify(info_dict_processed)
+        response.headers['Content-Type'] = 'application/json; charset=utf-8'
         return response
     else:
         # Handle the case where info_dict is None, e.g., return an appropriate response
