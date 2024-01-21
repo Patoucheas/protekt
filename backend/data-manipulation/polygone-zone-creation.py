@@ -1,4 +1,4 @@
-from backend import db_connection as db
+import db_connection as db
 import test_data_manipulation as data_coordinates
 from shapely.geometry import mapping
 
@@ -56,5 +56,5 @@ if __name__ == "__main__":
     database = db.client.open_montreal
     collection = database.actes_criminels
     borough_dict = data_coordinates.get_borough_coordinates()
-    create_crime_zone(collection,borough_dict)
+    create_crime_zone(collection, borough_dict)
     db.client.close()
