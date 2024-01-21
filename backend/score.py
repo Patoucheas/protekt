@@ -46,7 +46,7 @@ def separate_crimes_by_city():
 
 def calculate_score():
     #df = pd.read_csv("C:/Users/korjo/Documents/compsci/personal/protekt/population_arrondissements.csv")
-    df = pd.read_csv("../../population_arrondissements.csv")
+    df = pd.read_csv("population_arrondissements.csv")
     locs = [x for x in df['Location']]
     population = {x: df[df['Location'] == x]['Population'].values[0] for x in locs}
     crimes_by_city = separate_crimes_by_city()
@@ -95,5 +95,6 @@ def fill_missing_scores(pre_proc, city_crimes, weight_list):
 
 if __name__ == "__main__":
     test = calculate_score()
+    print(test)
     for key in test.keys():
         print(key, test[key])

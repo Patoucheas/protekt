@@ -1,8 +1,11 @@
 # Import the Flask class from the flask module
 from flask import Flask, jsonify
+from flask_cors import CORS
+
 from additional_information_queries import get_additional_information
 from backend import db_connection as db
-from flask_cors import CORS
+from backend import score
+from backend.score import calculate_score
 
 # Create an instance of the Flask class
 app = Flask(__name__)
@@ -30,7 +33,17 @@ def send_addtionial_info():
         # Handle the case where info_dict is None, e.g., return an appropriate response
         return jsonify({"error": "No additional information available"})
 
-# Run the application if this script is executed
+
+@app.route("/score")
+def send_score():
+    score_dict = calculate_score()
+    if score_dict is not None:
+        response = jsonify(score_dict)
+        response.headers['Content-Type'] = 'application/json; charset=utf-8'
+        return response
+    else:
+        # Handle the case where info_dict is None, e.g., return an appropriate response
+        return jsonify({"error": "No additional information available"})
 
 
 if __name__ == "__main__":
