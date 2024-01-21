@@ -1,4 +1,5 @@
 from backend import db_connection as db
+import test_data_manipulation as data_coordinates
 
 
 def create_crime_zone(db_collection, boroughs_polygon):
@@ -6,7 +7,7 @@ def create_crime_zone(db_collection, boroughs_polygon):
     all_crime_zones = {}
     for place_name, polygon_coordinates in boroughs_polygon.items():
         polygon_geojson = {
-            "type": "Polygon",
+            "type": "MultiPolygon",
             "coordinates": [polygon_coordinates]
         }
 
@@ -39,10 +40,9 @@ def determine_crime_zones_score(all_crime_zones):
     return zones_score
 
 
-
 if __name__ == "__main__":
     database = db.client.open_montreal
     collection = database.actes_criminels
-    borough_list = {}
-    create_crime_zone(collection,borough_list)
+    borough_dict = data_coordinates.get_borough_coordinates()
+    create_crime_zone(collection,borough_dict)
     db.client.close()
