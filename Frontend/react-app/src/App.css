@@ -1,0 +1,31 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevents scrolling */
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.App-header {
+  background-color: #282c34;
+  color: white;
+  padding: 10px;
+  font-size: 0.7rem;
+  /* Adjust as per your header height */
+}
+
+.Map-container {
+  flex-grow: 1; /* Takes up available space */
+}
+
+.App-footer {
+  background-color: #282c34;
+  color: white;
+  padding: 10px;
+  /* Adjust as per your footer height */
+}
