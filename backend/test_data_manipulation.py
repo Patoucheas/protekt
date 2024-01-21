@@ -6,7 +6,7 @@ def get_borough_coordinates():
     borough_dict = {}
     for index, row in gdf.iterrows():
 
-        borough_dict[row["NOM_OFFICIEL"]] = row["geometry"]
+        borough_dict[row["NOM"]] = row["geometry"]
 
     print(borough_dict)
     return borough_dict

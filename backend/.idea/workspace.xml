@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdac529c-1689-4cfe-a568-f4b857c13de4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../arrondissements.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/../arrondissements.geojson" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_data_manipulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_data_manipulation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
