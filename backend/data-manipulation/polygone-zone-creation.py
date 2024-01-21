@@ -27,6 +27,19 @@ def create_crime_zone(db_collection, boroughs_polygon):
     return all_crime_zones
 
 
+def determine_crime_zones_score(all_crime_zones):
+    # new dict from initial dict
+    zones_score = {}
+
+    for place_name, crime_list in all_crime_zones.items():
+        # put the scoring algorithm function here
+        score = 50
+        # new dict design
+        zones_score[place_name] = {"score": score, "crimes": crime_list}
+    return zones_score
+
+
+
 if __name__ == "__main__":
     database = db.client.open_montreal
     collection = database.actes_criminels
