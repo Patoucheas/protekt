@@ -167,13 +167,14 @@ function App() {
     }
   };
 
+  const googleMapsApiKey = process.env.PrivateGKey;
   return (
     <div className="App">
       <header className="App-header">
         <h1>PROTEKT</h1>
       </header>
       <LoadScript
-        const googleMapsApiKey = process.env.PrivateGKey; // Environmental Key to hide Google API
+        googleMapsApiKey = {googleMapsApiKey} // Environmental Key to hide Google API
         libraries={["visualization", "geometry"]}
       >
         <GoogleMap
