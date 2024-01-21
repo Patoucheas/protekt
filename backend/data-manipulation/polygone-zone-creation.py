@@ -1,41 +1,35 @@
 from backend import db_connection as db
 
 
-def create_crime_zone(db_collection):
-    # create the polygon geojson
-    polygon_geojson = {
-        "type": "Polygon",
-        "coordinates": [
-            [
-                [-73.690, 45.514],  # Bottom-left corner
-                [-73.690, 45.524],  # Top-left corner
-                [-73.682, 45.524],  # Top-right corner
-                [-73.682, 45.514],  # Bottom-right corner
-                [-73.690, 45.514]   # Closing the polygon
-            ]
-        ]
-    }
+def create_crime_zone(db_collection, boroughs_polygon):
 
-    # query the locations of crime within polygon
-    query = {
-        "geometry": {
-            "$geoWithin": {
-                "$geometry": polygon_geojson
+    all_crime_zones = {}
+    for place_name, polygon_coordinates in boroughs_polygon.items():
+        polygon_geojson = {
+            "type": "Polygon",
+            "coordinates": [polygon_coordinates]
+        }
+
+        # query the locations of crime within polygon
+        query = {
+            "geometry": {
+                "$geoWithin": {
+                    "$geometry": polygon_geojson
+                }
             }
         }
-    }
-    crimes_in_zone = list(collection.find(query))
-    # Print or process the result
-    if crimes_in_zone:
-        print("Crimes within the polygon zone:")
-        for crime in crimes_in_zone:
-            print(crime)
-    else:
-        print("No crimes found within the polygon zone.")
+        crimes_in_zone = list(db_collection.find(query))
+        # Print or process the result
+        if crimes_in_zone:
+            all_crime_zones.update({place_name: crimes_in_zone})
+        else:
+            print("No crimes found within the polygon zone.")
+    return all_crime_zones
 
 
 if __name__ == "__main__":
     database = db.client.open_montreal
     collection = database.actes_criminels
-    create_crime_zone(collection)
+    borough_list = {}
+    create_crime_zone(collection,borough_list)
     db.client.close()
