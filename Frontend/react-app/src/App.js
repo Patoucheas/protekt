@@ -173,7 +173,7 @@ function App() {
         <h1>PROTEKT</h1>
       </header>
       <LoadScript
-        googleMapsApiKey="AIzaSyAmIt8Vx8brU4NZwvdyD6x7LmCGwrYkSL0" // Replace with your actual API key
+        const googleMapsApiKey = process.env.PrivateGKey // Environmental Key to hide Google API
         libraries={["visualization", "geometry"]}
       >
         <GoogleMap
