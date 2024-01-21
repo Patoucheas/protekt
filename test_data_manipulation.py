@@ -2,7 +2,7 @@ import geopandas as gpd
 
 
 def get_borough_coordinates():
-    gdf = gpd.read_file('../../arrondissements.geojson')
+    gdf = gpd.read_file('arrondissements.geojson')
 
     borough_dict = {}
     for index, row in gdf.iterrows():
