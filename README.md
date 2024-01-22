@@ -5,9 +5,8 @@ Protekt is a full-stack application enhancing public safety in Montreal through 
 ![Protekt UI](https://github.com/Patoucheas/protekt/blob/main/protekt.png)
 
 ## Features
-- **Real-Time Crime Data**: Access to the latest crime reports and statistics.
+- **Montreal Crime Data**: Access to the latest crime reports and statistics from the city's open source database.
 - **Interactive Safety Map**: A map highlighting safe and risk-prone areas using a heat map visualization approach.
-- **Push Notifications**: Alerts users when entering higher-risk areas.
 - **Custom Flask API**: For efficient and dynamic data processing.
 - **MongoDB Integration**: For quick retrieval and dynamic management of crime data.
 - **Interactive Google Maps Interface**: For an engaging and intuitive user experience.
