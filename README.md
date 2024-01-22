@@ -1,4 +1,4 @@
-# Protekt App
+# Protekt And Serve
 
 Protekt is a full-stack application enhancing public safety in Montreal through real-time, data-driven insights. Combining Python, Node.js, Flask, React, and the Google Maps API, Protekt leverages Montreal's open data to provide an analytical view of neighborhood safety.
 
